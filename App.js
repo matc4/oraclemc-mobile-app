@@ -12,6 +12,8 @@ import {
   View
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -23,12 +25,13 @@ export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
+        <Icon name="mobile" color="red" size={42}  />
         <Text style={styles.welcome}>
           Welcome to Oracle Developer Tour 2017!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit App.js
-        </Text>
+        </Text> 
         <Text style={styles.instructions}>
           {instructions}
         </Text>
