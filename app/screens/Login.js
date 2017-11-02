@@ -15,7 +15,7 @@ class Login extends Component {
   }
 
   onTapLogin(){
-      this.props.history.push('/home');
+      ToastAndroid.show('Presiono Login !' + this.state.usuario, ToastAndroid.SHORT);
   }
 
   render() {
@@ -44,7 +44,7 @@ class Login extends Component {
                 <Button style={{marginTop: 10}} onPress={this.onTapLogin} >
                   <Text>Ingresar</Text>
                 </Button>
-            </View> 
+            </View>
           </Content>
       </Container>
     );
