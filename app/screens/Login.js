@@ -15,7 +15,7 @@ class Login extends Component {
   }
 
   onTapLogin(){
-      ToastAndroid.show('Presiono Login !' + this.state.usuario, ToastAndroid.SHORT);
+      this.props.history.push('/home');
   }
 
   render() {
