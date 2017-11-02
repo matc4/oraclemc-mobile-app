@@ -1,9 +1,10 @@
 'use strict';
 
 import React, {Component, PropTypes} from "react";
-import {  ToastAndroid  } from 'react-native';
-import { Container, Content, Button, Text, Form, Item, Input } from 'native-base';
+import {  ToastAndroid, View  } from 'react-native';
+import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input } from 'native-base';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Login extends Component {
 
@@ -20,28 +21,43 @@ class Login extends Component {
 
   render() {
     return (
-       <Container >
-          <Content >
+       <Container>
+         <Header>
+           <Body>
+              <Title>PeliApp</Title>
+           </Body>
+          </Header>
+          <Content>
+            <View style={{ alignItems: "center" }}>
+                <Icon name="mobile" color="red" size={42}  />
+                <Text>
+                  Welcome to Oracle Developer Tour 2017!
+                </Text>
+            </View>
             <Form >
-              <Item style={{width: 300}}>
+              <Item>
                 <Input placeholder="Usuario"
                        value={this.state.usuario}
                        onChangeText={(usuario) => this.setState({usuario:usuario})} />
               </Item>
-              <Item last>
+              <Item>
                 <Input placeholder="Contraseña"
                        value={this.state.password}
                        onChangeText={(password) => this.setState({password:password})} />
               </Item>
             </Form>
-            <Button style={{marginTop: 10}} onPress={this.onTapLogin} >
-              <Text>Ingresar</Text>
-            </Button>
+
+            <View style={{ alignSelf: "center" }}>
+                <Button style={{marginTop: 10}} onPress={this.onTapLogin} >
+                  <Text>Ingresar</Text>
+                </Button>
+            </View>
           </Content>
       </Container>
     );
   }
 };
+
 
 
 module.exports = Login;
