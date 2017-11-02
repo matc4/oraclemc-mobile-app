@@ -10,20 +10,15 @@ import {
 import { NativeRouter, Route, Link } from 'react-router-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Login from './app/screens/Login';
-import Home from './app/screens/Home';
-
+import Login from './app/screens/Login'; 
 
 
 export default class App extends Component<{}> {
   render() {
     return (
-        <NativeRouter>
-          <View style={styles.container}>
-            <Route exact path="/" component={Login}/>
-            <Route path="/home" component={Home}/>
-          </View>
-        </NativeRouter>
+      <View style={styles.container}>
+         <Login />
+      </View>
     );
   }
 }

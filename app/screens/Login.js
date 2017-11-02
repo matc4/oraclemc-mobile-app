@@ -4,6 +4,7 @@ import React, {Component, PropTypes} from "react";
 import {  ToastAndroid, View  } from 'react-native';
 import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input } from 'native-base';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Login extends Component {
 
@@ -27,6 +28,12 @@ class Login extends Component {
            </Body>
           </Header>
           <Content>
+            <View style={{ alignItems: "center" }}>
+                <Icon name="mobile" color="red" size={42}  />
+                <Text>
+                  Welcome to Oracle Developer Tour 2017!
+                </Text>
+            </View>
             <Form >
               <Item>
                 <Input placeholder="Usuario"
