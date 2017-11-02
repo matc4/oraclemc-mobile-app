@@ -7,19 +7,23 @@ import {
   View
 } from 'react-native';
 
+import { NativeRouter, Route, Link } from 'react-router-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Login from './app/screens/Login';
+import Home from './app/screens/Home';
+
+
 
 export default class App extends Component<{}> {
   render() {
     return (
-      <View style={styles.container}>
-        <Icon name="mobile" color="red" size={42}  />
-        <Text style={styles.welcome}>
-          Welcome to Oracle Developer Tour 2017!
-        </Text>
-         <Login />
-      </View>
+        <NativeRouter>
+          <View style={styles.container}>
+            <Route exact path="/" component={Login}/>
+            <Route path="/home" component={Home}/>
+          </View>
+        </NativeRouter>
     );
   }
 }
@@ -27,9 +31,6 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop:50,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   }
 });
