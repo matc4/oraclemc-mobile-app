@@ -1,8 +1,9 @@
 'use strict';
 
 import React, {Component, PropTypes} from "react";
-import {  ToastAndroid, View  } from 'react-native';
-import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input } from 'native-base';
+import {  ToastAndroid, View, Alert } from 'react-native';
+import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
+var OracleCloudServiceModule = require('react-native').NativeModules.OracleCloudServiceModule;
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -10,13 +11,34 @@ class Login extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {usuario:'', password:''};
+    this.state = {
+      usuario:'mcs-demo_user02',
+      password:'ALlegeD@2Cedar',
+      loading: false
+    };
 
     this.onTapLogin = this.onTapLogin.bind(this);
   }
 
   onTapLogin(){
-      this.props.history.push('/home');
+    this.setState({ loading: true });
+
+    OracleCloudServiceModule.loginUser(this.state.usuario, this.state.password,
+      (success, data) => {
+        this.setState({ loading: false });
+
+        if(success) {
+          this.props.history.push('/home');
+        } else {
+          Alert.alert("", data);
+        }
+      });
+  }
+
+  renderSpinner() {
+    if(this.state.loading) {
+      return <Spinner color='red' />;
+    }
   }
 
   render() {
@@ -52,6 +74,9 @@ class Login extends Component {
                   <Text>Ingresar</Text>
                 </Button>
             </View>
+
+            {this.renderSpinner()}
+
           </Content>
       </Container>
     );
