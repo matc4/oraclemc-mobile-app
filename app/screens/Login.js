@@ -4,7 +4,6 @@ import React, {Component, PropTypes} from "react";
 import {  ToastAndroid, View, Alert } from 'react-native';
 import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
 var OracleCloudServiceModule = require('react-native').NativeModules.OracleCloudServiceModule;
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Login extends Component {
@@ -33,6 +32,22 @@ class Login extends Component {
           Alert.alert("", data);
         }
       });
+
+    /*  fetch(`https://us-central1-oracle-developer-tour.cloudfunctions.net/app/login?user=${this.state.usuario}&pass=${this.state.password}`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ loading: false });
+          if(responseJson === 'Usuario autenticado correctamente') {
+            this.props.history.push('/home');
+          }
+          else {
+            Alert.alert("Error", responseJson);
+          }
+        })
+        .catch((error) => {
+          this.setState({ loading: false });
+          Alert.alert("Error", error);
+        });*/
   }
 
   renderSpinner() {
@@ -82,7 +97,5 @@ class Login extends Component {
     );
   }
 };
-
-
 
 module.exports = Login;

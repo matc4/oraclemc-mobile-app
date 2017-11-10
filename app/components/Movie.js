@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, TouchableOpacity, View, Image } from 'react-native';
+'use strict';
 
+import React, {Component, PropTypes} from "react";
+import { Text, TouchableWithoutFeedback, TouchableOpacity, View, Image } from 'react-native';
 
 class Movie extends Component {
 
   onRowPress() {
-    //Actions.videoDetails({ video: this.props.video });
+    this.props.onPressMovie(this.props.video);
   }
 
   render() {
-    const { name, duration, image } = this.props.video;
- 
+    const { name, duration, images } = this.props.video;
     return (
         <View style={styles.imgContainerStyle}>
           <TouchableOpacity onPress={this.onRowPress.bind(this)}>
-            <Image style={styles.imageStyle} source={{ uri: image }}  />
+            <Image style={styles.imageStyle} source={{ uri: images[0] }}  />
           </TouchableOpacity>
           <Text style={styles.titleStyle}>
             {name}
