@@ -44,7 +44,7 @@ class Home extends Component {
        content={<SideBar/>}
        onClose={() => this.closeDrawer()} >
        <Container>
-           <Header >
+           <Header>
                     <Left>
                        <Button transparent onPress={this.openDrawer}>
                          <Icon name='bars' size={26} color="white" />
@@ -55,12 +55,10 @@ class Home extends Component {
                      </Body>
                      <Right/>
            </Header>
-           <Content>
-
+           <Content> 
                 <View style={{flexDirection: 'row', flexWrap: 'wrap', paddingBottom:70}}>
-                {this.renderMovies()}
-                </View>
-
+                    {this.renderMovies()}
+                </View>   
            </Content>
          </Container>
       </Drawer>

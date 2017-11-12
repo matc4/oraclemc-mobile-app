@@ -5,7 +5,6 @@ import { Text, TouchableWithoutFeedback, TouchableOpacity, View, Image } from 'r
 class Movie extends Component {
 
   onRowPress() {
-    //Actions.videoDetails({ video: this.props.video });
   }
 
   render() {
