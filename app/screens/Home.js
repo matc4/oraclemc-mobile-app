@@ -5,11 +5,9 @@ import { View  } from 'react-native';
 import { Drawer, Header, Card, CardItem, Container, Left, Right, Title,
         Content, Button, Text, Form, Item, Input, Body } from 'native-base';
 
-import SideBar from '../components/SideBar';
-import Movie from '../components/Movie';
-import moviesList from '../data/movies';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
+
+import SideBar from '../components/SideBar';
 
 class Home extends Component {
 
@@ -18,7 +16,6 @@ class Home extends Component {
 
     this.closeDrawer = this.closeDrawer.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
-    this.renderMovies = this.renderMovies.bind(this);
   }
 
   closeDrawer(){
@@ -29,14 +26,6 @@ class Home extends Component {
     this.drawer._root.open();
   }
 
-  renderMovies() {
-      let moviesArray = [];
-      moviesList.forEach(function (movie) {
-        moviesArray.push(<Movie video={movie} key={movie.id}  />)
-      })
-      return moviesArray;
-  }
-
   render() {
     return (
       <Drawer
@@ -44,7 +33,7 @@ class Home extends Component {
        content={<SideBar/>}
        onClose={() => this.closeDrawer()} >
        <Container>
-           <Header >
+           <Header>
                     <Left>
                        <Button transparent onPress={this.openDrawer}>
                          <Icon name='bars' size={26} color="white" />
@@ -56,11 +45,9 @@ class Home extends Component {
                      <Right/>
            </Header>
            <Content>
-
                 <View style={{flexDirection: 'row', flexWrap: 'wrap', paddingBottom:70}}>
-                {this.renderMovies()}
+                    <Text>HOLA</Text>
                 </View>
-
            </Content>
          </Container>
       </Drawer>
