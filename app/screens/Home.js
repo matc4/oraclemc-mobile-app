@@ -22,17 +22,18 @@ class Home extends Component {
     this.closeDrawer = this.closeDrawer.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.renderMovies = this.renderMovies.bind(this);
-    this.onPressMovie = this.onPressMovie.bind(this);
     this.loadMovies = this.loadMovies.bind(this);
+    this.loadMovies2 = this.loadMovies2.bind(this);
   }
 
   componentWillMount() {
-    this.loadMovies(false);
+      this.loadMovies2();
   }
 
-  loadMovies(refresh) {
+  loadMovies() {
+    this.setState({ loading: true });
 
-    /*OracleCloudServiceModule.invokeEndPoint("oracle_developer_tour_api/movies",
+    OracleCloudServiceModule.invokeEndPoint("oracle_developer_tour_api/movies",
       null, //Body
       OracleCloudServiceModule.HTTP_METHOD_GET,
       (success, data) => {
@@ -44,19 +45,21 @@ class Home extends Component {
         } else {
           Alert.alert("Error", data);
         }
-      });*/
-    if(refresh)
-      this.setState({ loading: true });
+      });
+  }
 
-     fetch('https://us-central1-oracle-developer-tour.cloudfunctions.net/app/movies')
-       .then((response) => response.json())
-       .then((responseJson) => {
-         this.setState({ loading: false, movies: responseJson });
-       })
-       .catch((error) => {
-         this.setState({ loading: false });
-         Alert.alert("Error", error);
-       });
+  loadMovies2(){
+    this.setState({ loading: true });
+
+    fetch('https://us-central1-oracle-developer-tour.cloudfunctions.net/app/movies')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({ loading: false, movies: responseJson });
+    })
+    .catch((error) => {
+      this.setState({ loading: false });
+      Alert.alert("Error", error);
+    });
   }
 
   closeDrawer(){
@@ -67,20 +70,13 @@ class Home extends Component {
     this.drawer._root.open();
   }
 
-  onPressMovie(movie) {
-    this.props.history.push({
-      pathname: '/movieDetails',
-      state: { movie: movie }
-    });
-  }
+
 
   renderMovies() {
     if(this.state.loading) {
-      return <Spinner
-                style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-                color='red' />;
-    }
-    else {
+      return <Spinner color='red'
+                style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />;
+    }else{
       let moviesArray = [];
       let onPressMovieFunc = this.onPressMovie;
       this.state.movies.forEach(function(movie) {
@@ -108,17 +104,15 @@ class Home extends Component {
                         <Title>PeliApp</Title>
                      </Body>
                      <Right>
-                        <Button transparent onPress={() => this.loadMovies(true)}>
+                        <Button transparent onPress={this.loadMovies2}>
                           <Icon name='refresh'/>
                         </Button>
                       </Right>
            </Header>
            <Content>
-
                 <View style={{flexDirection: 'row', flexWrap: 'wrap', paddingBottom:70}}>
-                {this.renderMovies()}
+                    {this.renderMovies()}
                 </View>
-
            </Content>
          </Container>
       </Drawer>
