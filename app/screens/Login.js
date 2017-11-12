@@ -50,12 +50,6 @@ class Login extends Component {
         });*/
   }
 
-  renderSpinner() {
-    if(this.state.loading) {
-      return <Spinner color='red' />;
-    }
-  }
-
   render() {
     return (
        <Container>
@@ -90,8 +84,7 @@ class Login extends Component {
                 </Button>
             </View>
 
-            {this.renderSpinner()}
-
+            {this.state.loading ? <Spinner color='red' /> : null}
           </Content>
       </Container>
     );
