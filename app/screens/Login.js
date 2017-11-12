@@ -17,6 +17,7 @@ class Login extends Component {
     };
 
     this.onTapLogin = this.onTapLogin.bind(this);
+    this.onTapLogin2 = this.onTapLogin2.bind(this);
   }
 
   onTapLogin(){
@@ -32,22 +33,24 @@ class Login extends Component {
           Alert.alert("", data);
         }
       });
+  }
 
-    /*  fetch(`https://us-central1-oracle-developer-tour.cloudfunctions.net/app/login?user=${this.state.usuario}&pass=${this.state.password}`)
-        .then((response) => response.json())
-        .then((responseJson) => {
-          this.setState({ loading: false });
-          if(responseJson === 'Usuario autenticado correctamente') {
-            this.props.history.push('/home');
-          }
-          else {
-            Alert.alert("Error", responseJson);
-          }
-        })
-        .catch((error) => {
-          this.setState({ loading: false });
-          Alert.alert("Error", error);
-        });*/
+  onTapLogin2(){
+      fetch(`https://us-central1-oracle-developer-tour.cloudfunctions.net/app/login?user=${this.state.usuario}&pass=${this.state.password}`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ loading: false });
+        if(responseJson === 'Usuario autenticado correctamente') {
+          this.props.history.push('/home');
+        }
+        else {
+          Alert.alert("Error", responseJson);
+        }
+      })
+      .catch((error) => {
+        this.setState({ loading: false });
+        Alert.alert("Error", error);
+      });
   }
 
   render() {
@@ -79,7 +82,7 @@ class Login extends Component {
             </Form>
 
             <View style={{ alignSelf: "center" }}>
-                <Button style={{marginTop: 10}} onPress={this.onTapLogin} >
+                <Button style={{marginTop: 10}} onPress={this.onTapLogin2} >
                   <Text>Ingresar</Text>
                 </Button>
             </View>
