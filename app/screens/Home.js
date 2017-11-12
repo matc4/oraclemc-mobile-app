@@ -1,24 +1,62 @@
 'use strict';
 
 import React, {Component, PropTypes} from "react";
-import { View  } from 'react-native';
-import { Drawer, Header, Card, CardItem, Container, Left, Right, Title,
+import { View, Alert } from 'react-native';
+import { Drawer, Header, Icon, Card, CardItem, Container, Left, Right, Title, Spinner,
         Content, Button, Text, Form, Item, Input, Body } from 'native-base';
 
 import SideBar from '../components/SideBar';
 import Movie from '../components/Movie';
-import moviesList from '../data/movies';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
+var OracleCloudServiceModule = require('react-native').NativeModules.OracleCloudServiceModule;
 
 class Home extends Component {
 
   constructor(props, context) {
     super(props, context);
 
+    this.state = {
+      movies: [],
+      loading: true
+    };
+
     this.closeDrawer = this.closeDrawer.bind(this);
     this.openDrawer = this.openDrawer.bind(this);
     this.renderMovies = this.renderMovies.bind(this);
+    this.onPressMovie = this.onPressMovie.bind(this);
+    this.loadMovies = this.loadMovies.bind(this);
+  }
+
+  componentWillMount() {
+    this.loadMovies(false);
+  }
+
+  loadMovies(refresh) {
+
+    /*OracleCloudServiceModule.invokeEndPoint("oracle_developer_tour_api/movies",
+      null, //Body
+      OracleCloudServiceModule.HTTP_METHOD_GET,
+      (success, data) => {
+        this.setState({ loading: false });
+
+        if(success) {
+          var parsedObject = eval("(" + data + ")");
+          this.setState({ movies: parsedObject.moviesList })
+        } else {
+          Alert.alert("Error", data);
+        }
+      });*/
+    if(refresh)
+      this.setState({ loading: true });
+
+     fetch('https://us-central1-oracle-developer-tour.cloudfunctions.net/app/movies')
+       .then((response) => response.json())
+       .then((responseJson) => {
+         this.setState({ loading: false, movies: responseJson });
+       })
+       .catch((error) => {
+         this.setState({ loading: false });
+         Alert.alert("Error", error);
+       });
   }
 
   closeDrawer(){
@@ -29,15 +67,31 @@ class Home extends Component {
     this.drawer._root.open();
   }
 
+  onPressMovie(movie) {
+    this.props.history.push({
+      pathname: '/movieDetails',
+      state: { movie: movie }
+    });
+  }
+
   renderMovies() {
+    if(this.state.loading) {
+      return <Spinner
+                style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+                color='red' />;
+    }
+    else {
       let moviesArray = [];
-      moviesList.forEach(function (movie) {
-        moviesArray.push(<Movie video={movie} key={movie.id}  />)
-      })
+      let onPressMovieFunc = this.onPressMovie;
+      this.state.movies.forEach(function(movie) {
+        moviesArray.push(<Movie video={movie} onPressMovie={onPressMovieFunc} key={movie.id} />)
+      });
       return moviesArray;
+    }
   }
 
   render() {
+
     return (
       <Drawer
        ref={(ref) => { this.drawer = ref; }}
@@ -47,13 +101,17 @@ class Home extends Component {
            <Header >
                     <Left>
                        <Button transparent onPress={this.openDrawer}>
-                         <Icon name='bars' size={26} color="white" />
+                         <Icon name='md-menu'/>
                        </Button>
                      </Left>
                      <Body>
                         <Title>PeliApp</Title>
                      </Body>
-                     <Right/>
+                     <Right>
+                        <Button transparent onPress={() => this.loadMovies(true)}>
+                          <Icon name='refresh'/>
+                        </Button>
+                      </Right>
            </Header>
            <Content>
 
