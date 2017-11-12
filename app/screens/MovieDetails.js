@@ -7,12 +7,13 @@ import {
 } from 'react-native'
 import { Drawer, Header, Card, CardItem, Container, Left, Right, Title,
         Content, Button, Text, Icon, Form, Item, Input, Body } from 'native-base';
+
 import Carousel from 'react-native-snap-carousel';
 import SliderEntry from '../components/SliderEntry';
 import { sliderWidth, itemWidth } from '../styles/SliderEntry.style';
 
 
-class VideoDetails extends Component {
+class MovieDetails extends Component {
 
   constructor(props, context) {
     super(props, context);
@@ -33,30 +34,9 @@ class VideoDetails extends Component {
       );
   }
 
-  render () {
-     const {
-      name,
-      type,
-      year,
-      clasification,
-      duration,
-      description,
-      staring,
-      director,
-      images
-    } = this.props.history.location.state.movie
+  render() {
 
-    const {
-      backgroundScreenStyle,
-      imageAndTitleContainerStyle,
-      closeIconContainerStyle,
-      containerRightSectionStyle,
-      titleStyle,
-      imageStyle,
-      playButtonStyle,
-      blackTextStyle,
-      newLineTextStyle
-    } = styles
+    const movie = this.props.history.location.state.movie;
 
     return (
       <Container>
@@ -72,10 +52,10 @@ class VideoDetails extends Component {
           <Right/>
         </Header>
         <Content>
-          <ScrollView style={backgroundScreenStyle}>
-            <View style={imageAndTitleContainerStyle}>
+          <ScrollView style={styles.backgroundScreenStyle}>
+            <View style={styles.imageAndTitleContainerStyle}>
               <Carousel
-                data={images}
+                data={movie.images}
                 renderItem={this._renderItem}
                 sliderWidth={sliderWidth}
                 itemWidth={itemWidth}
@@ -85,33 +65,33 @@ class VideoDetails extends Component {
                 contentContainerCustomStyle={styles.sliderContentContainer}
               />
 
-              <View style={containerRightSectionStyle}>
-                <Text style={titleStyle}>{name}</Text>
-                <Text style={blackTextStyle}>
-                  {year} ·
-                  {duration} mins ·
-                  {clasification}
+              <View style={styles.containerRightSectionStyle}>
+                <Text style={styles.titleStyle}>{movie.name}</Text>
+                <Text style={styles.blackTextStyle}>
+                  {movie.year} ·
+                  {movie.duration} mins ·
+                  {movie.clasification}
                 </Text>
                 <View style={{ flexDirection: 'row' }}>
-                  <Text style={[blackTextStyle, { marginRight: 5 }]}>
+                  <Text style={[styles.blackTextStyle, { marginRight: 5 }]}>
                     Todos,
                   </Text>
-                  <Text style={blackTextStyle}>{type}</Text>
+                  <Text style={styles.blackTextStyle}>{movie.type}</Text>
                 </View>
               </View>
             </View>
-            <Text style={blackTextStyle}>{description}</Text>
-            <View style={newLineTextStyle}>
-              <Text style={blackTextStyle}>
+            <Text style={styles.blackTextStyle}>{movie.description}</Text>
+            <View style={styles.newLineTextStyle}>
+              <Text style={styles.blackTextStyle}>
                 Protagonizada por:
               </Text>
-              <Text style={blackTextStyle}>{staring}</Text>
+              <Text style={styles.blackTextStyle}>{movie.staring}</Text>
             </View>
-            <View style={newLineTextStyle}>
-              <Text style={blackTextStyle}>
+            <View style={styles.newLineTextStyle}>
+              <Text style={styles.blackTextStyle}>
                 Dirigida por:
               </Text>
-              <Text style={blackTextStyle}>{director}</Text>
+              <Text style={styles.blackTextStyle}>{movie.director}</Text>
             </View>
           </ScrollView>
         </Content>
@@ -157,4 +137,4 @@ const styles = {
   }
 }
 
-export default VideoDetails
+export default MovieDetails;

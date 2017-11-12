@@ -24,6 +24,7 @@ class Home extends Component {
     this.renderMovies = this.renderMovies.bind(this);
     this.loadMovies = this.loadMovies.bind(this);
     this.loadMovies2 = this.loadMovies2.bind(this);
+    this.onPressMovie = this.onPressMovie.bind(this);
   }
 
   componentWillMount() {
@@ -59,6 +60,13 @@ class Home extends Component {
     .catch((error) => {
       this.setState({ loading: false });
       Alert.alert("Error", error);
+    });
+  }
+
+  onPressMovie(movie) {
+    this.props.history.push({
+      pathname: '/movieDetails',
+      state: { movie: movie }
     });
   }
 
