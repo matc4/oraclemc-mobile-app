@@ -55,12 +55,10 @@ class Home extends Component {
                      </Body>
                      <Right/>
            </Header>
-           <Content>
-
+           <Content> 
                 <View style={{flexDirection: 'row', flexWrap: 'wrap', paddingBottom:70}}>
-                {this.renderMovies()}
-                </View>
-
+                  {this.renderMovies()}
+                </View> 
            </Content>
          </Container>
       </Drawer>
