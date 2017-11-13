@@ -2,10 +2,8 @@
 
 import React, {Component, PropTypes} from "react";
 import {  ToastAndroid, View, Alert } from 'react-native';
-import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
+import { Container, Content, Icon, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
 var OracleCloudServiceModule = require('react-native').NativeModules.OracleCloudServiceModule;
-
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Login extends Component {
 
@@ -30,7 +28,7 @@ class Login extends Component {
         if(success) {
           this.props.history.push('/home');
         } else {
-          Alert.alert("", data);
+          Alert.alert("Error", data);
         }
       });
   }
@@ -45,7 +43,7 @@ class Login extends Component {
           </Header>
           <Content>
             <View style={{ alignItems: "center" }}>
-                <Icon name="mobile" color="red" size={42}  />
+                <Icon name="md-phone-portrait" style={{fontSize: 42, color: 'red'}}  />
                 <Text>
                   Welcome to Oracle Developer Tour 2017!
                 </Text>
