@@ -2,9 +2,8 @@
 
 import React, {Component, PropTypes} from "react";
 import {  ToastAndroid, View, Alert } from 'react-native';
-import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
+import { Container, Icon, Content, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
 var OracleCloudServiceModule = require('react-native').NativeModules.OracleCloudServiceModule;
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Login extends Component {
 
@@ -30,12 +29,14 @@ class Login extends Component {
         if(success) {
           this.props.history.push('/home');
         } else {
-          Alert.alert("", data);
+          Alert.alert("Error", data);
         }
       });
   }
 
   onTapLogin2(){
+      this.setState({ loading: true });
+
       fetch(`https://us-central1-oracle-developer-tour.cloudfunctions.net/app/login?user=${this.state.usuario}&pass=${this.state.password}`)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -63,7 +64,7 @@ class Login extends Component {
           </Header>
           <Content>
             <View style={{ alignItems: "center" }}>
-                <Icon name="mobile" color="red" size={42}  />
+                <Icon name="md-phone-portrait" style={{fontSize: 42, color: 'red'}}  />
                 <Text>
                   Welcome to Oracle Developer Tour 2017!
                 </Text>
@@ -82,7 +83,7 @@ class Login extends Component {
             </Form>
 
             <View style={{ alignSelf: "center" }}>
-                <Button style={{marginTop: 10}} onPress={this.onTapLogin2} >
+                <Button style={{marginTop: 10}} onPress={this.onTapLogin} >
                   <Text>Ingresar</Text>
                 </Button>
             </View>

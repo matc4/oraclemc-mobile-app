@@ -28,13 +28,13 @@ class Home extends Component {
   }
 
   componentWillMount() {
-      this.loadMovies2();
+      this.loadMovies();
   }
 
   loadMovies() {
     this.setState({ loading: true });
 
-    OracleCloudServiceModule.invokeEndPoint("oracle_developer_tour_api/movies",
+    OracleCloudServiceModule.invokeEndPoint("oracle_dev_api/movies",
       null, //Body
       OracleCloudServiceModule.HTTP_METHOD_GET,
       (success, data) => {
