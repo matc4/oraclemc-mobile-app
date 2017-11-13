@@ -4,7 +4,7 @@ import React, {Component, PropTypes} from "react";
 import {  ToastAndroid, View, Alert } from 'react-native';
 import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
 var OracleCloudServiceModule = require('react-native').NativeModules.OracleCloudServiceModule;
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class Login extends Component {
 
