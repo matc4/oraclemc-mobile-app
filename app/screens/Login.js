@@ -2,9 +2,7 @@
 
 import React, {Component, PropTypes} from "react";
 import {  ToastAndroid, View  } from 'react-native';
-import { Container, Content, Body, Title, Header, Button, Text, Form, Item, Input } from 'native-base';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Container, Icon, Content, Body, Title, Header, Button, Text, Form, Item, Input } from 'native-base';
 
 class Login extends Component {
 
@@ -29,7 +27,7 @@ class Login extends Component {
           </Header>
           <Content>
             <View style={{ alignItems: "center" }}>
-                <Icon name="mobile" color="red" size={42}  />
+                <Icon name="md-phone-portrait" style={{fontSize: 42, color: 'red'}}  />
                 <Text>
                   Welcome to Oracle Developer Tour 2017!
                 </Text>
