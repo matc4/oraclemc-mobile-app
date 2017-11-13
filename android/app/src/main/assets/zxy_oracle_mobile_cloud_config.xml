@@ -7,14 +7,14 @@
 
     <mobileBackend>
         <!--Add the name and version of your mobileBackend as values here-->
-        <mbeName>oracle_dev_backend</mbeName>
+        <mbeName>zxy_oracle_dev_backend</mbeName>
         <mbeVersion>1.0</mbeVersion>
 
         <!--Set to true if the current mobileBackend is the default one-->
         <default>true</default>
 
         <!--Add the appID here-->
-        <appKey>404952f5-32ab-4aff-b911-79ce0e70f613</appKey>
+        <appKey>c18b08c4-21d0-46de-8bb3-c5a69a515cb0</appKey>
 
         <!--The base URL goes here-->
         <baseUrl>https://mcs-gse00011723.mobileenv.us2.oraclecloud.com:443</baseUrl>
@@ -40,15 +40,15 @@
 
             <!-- set these when authenticationType above is basic-->
             <basic>
-                <mobileBackendID>2723b005-dc1e-4a2e-aef0-e5da6c85f790</mobileBackendID>
+                <mobileBackendID>ad8035e0-788b-470b-ad8f-ea34f3d56f06</mobileBackendID>
                 <anonymousKey>R1NFMDAwMTE3MjNfTUNTX01PQklMRV9BTk9OWU1PVVNfQVBQSUQ6bzRvdW5neURxLmpsMG0=</anonymousKey>
             </basic>
 
             <!-- set these when authenticationType above is oauth-->
             <oauth>
                 <oAuthTokenEndPoint>https://gse00011723.identity.us.oraclecloud.com/oam/oauth2/tokens</oAuthTokenEndPoint>
-                <oAuthClientId>5bde69af-c9eb-430d-abb5-6830fdb67778</oAuthClientId>
-                <oAuthClientSecret>wXwchbqtCkEHGrTbLxp3</oAuthClientSecret>
+                <oAuthClientId>2df7ef98-344c-413e-9cdc-2df0867ffbd7</oAuthClientId>
+                <oAuthClientSecret>rvksLvMKSqPmPYRPTGT4</oAuthClientSecret>
             </oauth>
         </authorization>
     </mobileBackend>
