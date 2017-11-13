@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 
-import { NativeRouter, Route, Link } from 'react-router-native'
+import { NativeRouter, Route, Link } from 'react-router-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Login from './app/screens/Login';
