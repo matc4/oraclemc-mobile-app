@@ -28,13 +28,13 @@ class Home extends Component {
   }
 
   componentWillMount() {
-      this.loadMovies2();
+      this.loadMovies();
   }
 
   loadMovies() {
     this.setState({ loading: true });
 
-    OracleCloudServiceModule.invokeEndPoint("oracle_developer_tour_api/movies",
+    OracleCloudServiceModule.invokeEndPoint("oracle_dev_api/movies",
       null, //Body
       OracleCloudServiceModule.HTTP_METHOD_GET,
       (success, data) => {
@@ -78,8 +78,6 @@ class Home extends Component {
     this.drawer._root.open();
   }
 
-
-
   renderMovies() {
     if(this.state.loading) {
       return <Spinner color='red'
@@ -112,7 +110,7 @@ class Home extends Component {
                         <Title>PeliApp</Title>
                      </Body>
                      <Right>
-                        <Button transparent onPress={this.loadMovies2}>
+                        <Button transparent onPress={this.loadMovies}>
                           <Icon name='refresh'/>
                         </Button>
                       </Right>
