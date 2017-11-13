@@ -1,3 +1,4 @@
+/*
 const moviesList = [
   {
     "id": 2,
@@ -183,3 +184,31 @@ const moviesList = [
   }
 ];
 module.exports = moviesList;
+
+
+ fetch('https://us-central1-oracle-developer-tour.cloudfunctions.net/app/movies')
+   .then((response) => response.json())
+   .then((responseJson) => {
+     this.setState({ loading: false, movies: responseJson });
+   })
+   .catch((error) => {
+     this.setState({ loading: false });
+     Alert.alert("Error", error);
+   });
+
+  fetch(`https://us-central1-oracle-developer-tour.cloudfunctions.net/app/login?user=${this.state.usuario}&pass=${this.state.password}`)
+     .then((response) => response.json())
+     .then((responseJson) => {
+       this.setState({ loading: false });
+       if(responseJson === 'Usuario autenticado correctamente') {
+         this.props.history.push('/home');
+       }
+       else {
+         Alert.alert("Error", responseJson);
+       }
+     })
+     .catch((error) => {
+       this.setState({ loading: false });
+       Alert.alert("Error", error);
+     });
+  */

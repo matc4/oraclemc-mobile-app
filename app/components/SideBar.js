@@ -1,7 +1,6 @@
 'use strict';
 
 import React, {Component, PropTypes} from "react";
-import { View  } from 'react-native';
 import {Container, Content, Left, Right, Form, ListItem,List, Icon, Body, Text, Switch } from 'native-base';
 
 
@@ -13,8 +12,7 @@ class SideBar extends Component {
 
   render() {
     return (
-      <View style={{flex:1, backgroundColor:"white"}}>
-      <Container>
+      <Container style={{flex:1, backgroundColor:"white"}}>
         <Content>
           <List>
             <ListItem icon>
@@ -53,7 +51,6 @@ class SideBar extends Component {
           </List>
         </Content>
       </Container>
-      </View>
     );
   }
 };

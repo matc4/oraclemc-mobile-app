@@ -8,9 +8,7 @@ export default class SliderEntry extends Component {
 
     static propTypes = {
         data: PropTypes.string.isRequired,
-        even: PropTypes.bool,
-        parallax: PropTypes.bool,
-        parallaxProps: PropTypes.object
+        even: PropTypes.bool
     };
 
     get image () {

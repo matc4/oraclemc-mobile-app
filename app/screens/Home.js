@@ -31,8 +31,10 @@ class Home extends Component {
   }
 
   loadMovies(refresh) {
+    if(refresh)
+      this.setState({ loading: true });
 
-    /*OracleCloudServiceModule.invokeEndPoint("oracle_developer_tour_api/movies",
+    OracleCloudServiceModule.invokeEndPoint("oracle_dev_api/movies",
       null, //Body
       OracleCloudServiceModule.HTTP_METHOD_GET,
       (success, data) => {
@@ -44,19 +46,7 @@ class Home extends Component {
         } else {
           Alert.alert("Error", data);
         }
-      });*/
-    if(refresh)
-      this.setState({ loading: true });
-
-     fetch('https://us-central1-oracle-developer-tour.cloudfunctions.net/app/movies')
-       .then((response) => response.json())
-       .then((responseJson) => {
-         this.setState({ loading: false, movies: responseJson });
-       })
-       .catch((error) => {
-         this.setState({ loading: false });
-         Alert.alert("Error", error);
-       });
+      });
   }
 
   closeDrawer(){
