@@ -112,7 +112,7 @@ class Home extends Component {
                         <Title>PeliApp</Title>
                      </Body>
                      <Right>
-                        <Button transparent onPress={this.loadMovies2}>
+                        <Button transparent onPress={this.loadMovies}>
                           <Icon name='refresh'/>
                         </Button>
                       </Right>
