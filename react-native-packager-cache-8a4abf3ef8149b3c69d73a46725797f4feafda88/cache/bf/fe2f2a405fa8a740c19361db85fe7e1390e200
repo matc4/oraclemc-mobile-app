@@ -1,0 +1,317 @@
+'use strict';
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/Users/dev2/Documents/Proyectos/oraclemc-mobile-app/app/screens/Home.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+var _nativeBase = require('native-base');
+
+var _SideBar = require('../components/SideBar');
+
+var _SideBar2 = _interopRequireDefault(_SideBar);
+
+var _Movie = require('../components/Movie');
+
+var _Movie2 = _interopRequireDefault(_Movie);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  Home: {
+    displayName: 'Home'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/Users/dev2/Documents/Proyectos/oraclemc-mobile-app/app/screens/Home.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var OracleMobileCloud = _reactNative.NativeModules.OracleMobileCloud;
+
+var Home = _wrapComponent('Home')(function (_Component) {
+  _inherits(Home, _Component);
+
+  function Home(props, context) {
+    _classCallCheck(this, Home);
+
+    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props, context));
+
+    _this.state = {
+      movies: [],
+      loading: true
+    };
+
+    _this.closeDrawer = _this.closeDrawer.bind(_this);
+    _this.openDrawer = _this.openDrawer.bind(_this);
+    _this.renderMovies = _this.renderMovies.bind(_this);
+    _this.loadMovies = _this.loadMovies.bind(_this);
+    _this.loadMovies2 = _this.loadMovies2.bind(_this);
+    _this.onPressMovie = _this.onPressMovie.bind(_this);
+    _this.logOut = _this.logOut.bind(_this);
+    return _this;
+  }
+
+  _createClass(Home, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.loadMovies();
+    }
+  }, {
+    key: 'logOut',
+    value: function logOut() {
+      var _this2 = this;
+
+      OracleMobileCloud.logout(function (success, data) {
+        if (success) {
+          _reactNative.Alert.alert("Success", data);
+          _this2.props.history.push('/');
+        } else {
+          _reactNative.Alert.alert("Error", data);
+        }
+      });
+    }
+  }, {
+    key: 'loadMovies',
+    value: function loadMovies() {
+      var _this3 = this;
+
+      this.setState({ loading: true });
+
+      OracleMobileCloud.invokeEndPoint("oracle_dev_api/movies", null, OracleMobileCloud.HTTP_METHOD_GET, function (success, data) {
+        _this3.setState({ loading: false });
+
+        if (success) {
+          _this3.setState({ movies: data.moviesList });
+        } else {
+          _reactNative.Alert.alert("Error", data);
+        }
+      });
+    }
+  }, {
+    key: 'loadMovies2',
+    value: function loadMovies2() {
+      var _this4 = this;
+
+      this.setState({ loading: true });
+
+      fetch('https://us-central1-oracle-developer-tour.cloudfunctions.net/app/movies').then(function (response) {
+        return response.json();
+      }).then(function (responseJson) {
+        _this4.setState({ loading: false, movies: responseJson });
+      }).catch(function (error) {
+        _this4.setState({ loading: false });
+        _reactNative.Alert.alert("Error", error);
+      });
+    }
+  }, {
+    key: 'onPressMovie',
+    value: function onPressMovie(movie) {
+      this.props.history.push({
+        pathname: '/movieDetails',
+        state: { movie: movie }
+      });
+    }
+  }, {
+    key: 'closeDrawer',
+    value: function closeDrawer() {
+      this.drawer._root.close();
+    }
+  }, {
+    key: 'openDrawer',
+    value: function openDrawer() {
+      this.drawer._root.open();
+    }
+  }, {
+    key: 'renderMovies',
+    value: function renderMovies() {
+      if (this.state.loading) {
+        return _react3.default.createElement(_nativeBase.Spinner, { color: 'red',
+          style: { flex: 1, justifyContent: 'center', alignItems: 'center' }, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 95
+          }
+        });
+      } else {
+        var moviesArray = [];
+        var onPressMovieFunc = this.onPressMovie;
+        this.state.movies.forEach(function (movie) {
+          moviesArray.push(_react3.default.createElement(_Movie2.default, { video: movie, onPressMovie: onPressMovieFunc, key: movie.id, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 101
+            }
+          }));
+        });
+        return moviesArray;
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this5 = this;
+
+      return _react3.default.createElement(
+        _nativeBase.Drawer,
+        {
+          ref: function ref(_ref) {
+            _this5.drawer = _ref;
+          },
+          content: _react3.default.createElement(_SideBar2.default, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 112
+            }
+          }),
+          onClose: function onClose() {
+            return _this5.closeDrawer();
+          }, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 110
+          }
+        },
+        _react3.default.createElement(
+          _nativeBase.Container,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 114
+            }
+          },
+          _react3.default.createElement(
+            _nativeBase.Header,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 115
+              }
+            },
+            _react3.default.createElement(
+              _nativeBase.Left,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 116
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Button,
+                { transparent: true, onPress: this.openDrawer, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 117
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Icon, { name: 'md-menu', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 118
+                  }
+                })
+              )
+            ),
+            _react3.default.createElement(
+              _nativeBase.Body,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 121
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Title,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 122
+                  }
+                },
+                'PeliApp'
+              )
+            ),
+            _react3.default.createElement(
+              _nativeBase.Right,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 124
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Button,
+                { transparent: true, onPress: this.logOut, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 125
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Icon, { name: 'pulse', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 126
+                  }
+                })
+              ),
+              _react3.default.createElement(
+                _nativeBase.Button,
+                { transparent: true, onPress: this.loadMovies, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 129
+                  }
+                },
+                _react3.default.createElement(_nativeBase.Icon, { name: 'refresh', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 130
+                  }
+                })
+              )
+            )
+          ),
+          _react3.default.createElement(
+            _nativeBase.Content,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 134
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.View,
+              { style: { flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 70 }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 135
+                }
+              },
+              this.renderMovies()
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Home;
+}(_react2.Component));
+
+;
+
+module.exports = Home;

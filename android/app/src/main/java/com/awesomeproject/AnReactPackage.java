@@ -24,7 +24,7 @@ public class AnReactPackage implements ReactPackage {
             ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
 
-        modules.add(new OracleCloudServiceModule(reactContext));
+        modules.add(new OracleMobileCloud(reactContext));
 
         return modules;
     }
