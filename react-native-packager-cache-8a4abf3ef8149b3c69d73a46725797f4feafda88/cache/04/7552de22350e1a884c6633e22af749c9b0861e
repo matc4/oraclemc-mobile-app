@@ -1,0 +1,109 @@
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/Users/dev2/Documents/Proyectos/oraclemc-mobile-app/app/components/SliderEntry.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+var _reactNativeSnapCarousel = require('react-native-snap-carousel');
+
+var _SliderEntry = require('../styles/SliderEntry.style');
+
+var _SliderEntry2 = _interopRequireDefault(_SliderEntry);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+    SliderEntry: {
+        displayName: 'SliderEntry'
+    }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: '/Users/dev2/Documents/Proyectos/oraclemc-mobile-app/app/components/SliderEntry.js',
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+    return function (Component) {
+        return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+}
+
+var SliderEntry = _wrapComponent('SliderEntry')(function (_Component) {
+    _inherits(SliderEntry, _Component);
+
+    function SliderEntry() {
+        _classCallCheck(this, SliderEntry);
+
+        return _possibleConstructorReturn(this, (SliderEntry.__proto__ || Object.getPrototypeOf(SliderEntry)).apply(this, arguments));
+    }
+
+    _createClass(SliderEntry, [{
+        key: 'render',
+        value: function render() {
+            var even = this.props.even;
+
+            return _react3.default.createElement(
+                _reactNative.TouchableOpacity,
+                {
+                    activeOpacity: 1,
+                    style: _SliderEntry2.default.slideInnerContainer,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 21
+                    }
+                },
+                _react3.default.createElement(
+                    _reactNative.View,
+                    { style: [_SliderEntry2.default.imageContainer, even ? _SliderEntry2.default.imageContainerEven : {}], __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 25
+                        }
+                    },
+                    this.image,
+                    _react3.default.createElement(_reactNative.View, { style: [_SliderEntry2.default.radiusMask, even ? _SliderEntry2.default.radiusMaskEven : {}], __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 27
+                        }
+                    })
+                )
+            );
+        }
+    }, {
+        key: 'image',
+        get: function get() {
+            return _react3.default.createElement(_reactNative.Image, {
+                source: { uri: this.props.data },
+                style: _SliderEntry2.default.image,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 11
+                }
+            });
+        }
+    }]);
+
+    return SliderEntry;
+}(_react2.Component));
+
+exports.default = SliderEntry;

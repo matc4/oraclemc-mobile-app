@@ -1,0 +1,8 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactNative = require('react-native');
+
+var RNOracleMobileCloud = _reactNative.NativeModules.RNOracleMobileCloud;
+exports.default = RNOracleMobileCloud;

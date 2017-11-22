@@ -1,4 +1,6 @@
 rootProject.name = 'AwesomeProject'
-include ':IDMMobileSDK'
+include ':react-native-oracle-mobile-cloud'
+project(':react-native-oracle-mobile-cloud').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-oracle-mobile-cloud/android')
+
 
 include ':app'

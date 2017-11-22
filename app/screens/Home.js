@@ -1,13 +1,13 @@
 'use strict';
 
 import React, {Component, PropTypes} from "react";
-import { View, Alert } from 'react-native';
+import { View, Alert, NativeModules } from 'react-native';
 import { Drawer, Header, Icon, Card, CardItem, Container, Left, Right, Title, Spinner,
         Content, Button, Text, Form, Item, Input, Body } from 'native-base';
 
 import SideBar from '../components/SideBar';
 import Movie from '../components/Movie';
-var OracleCloudServiceModule = require('react-native').NativeModules.OracleCloudServiceModule;
+import RNOracleMobileCloud from 'react-native-oracle-mobile-cloud';
 
 class Home extends Component {
 
@@ -25,24 +25,36 @@ class Home extends Component {
     this.loadMovies = this.loadMovies.bind(this);
     this.loadMovies2 = this.loadMovies2.bind(this);
     this.onPressMovie = this.onPressMovie.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
   componentWillMount() {
       this.loadMovies();
   }
 
+  logOut() {
+    RNOracleMobileCloud.logout(
+      (success, data) => {
+        if(success) {
+          Alert.alert("Success", data);
+          this.props.history.push('/');
+        } else {
+          Alert.alert("Error", data);
+        }
+      });
+  }
+
   loadMovies() {
     this.setState({ loading: true });
 
-    OracleCloudServiceModule.invokeEndPoint("oracle_dev_api/movies",
+    RNOracleMobileCloud.invokeEndPoint("oracle_dev_api/movies",
       null, //Body
-      OracleCloudServiceModule.HTTP_METHOD_GET,
+      RNOracleMobileCloud.HTTP_METHOD_GET,
       (success, data) => {
         this.setState({ loading: false });
 
         if(success) {
-          var parsedObject = eval("(" + data + ")");
-          this.setState({ movies: parsedObject.moviesList })
+          this.setState({ movies: data.moviesList })
         } else {
           Alert.alert("Error", data);
         }
@@ -110,6 +122,10 @@ class Home extends Component {
                         <Title>PeliApp</Title>
                      </Body>
                      <Right>
+                         <Button transparent onPress={this.logOut}>
+                           <Icon name='pulse'/>
+                         </Button>
+
                         <Button transparent onPress={this.loadMovies}>
                           <Icon name='refresh'/>
                         </Button>

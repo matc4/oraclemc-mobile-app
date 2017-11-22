@@ -1,9 +1,9 @@
 'use strict';
 
 import React, {Component, PropTypes} from "react";
-import {  ToastAndroid, View, Alert } from 'react-native';
+import {  ToastAndroid, View, Alert, NativeModules } from 'react-native';
 import { Container, Icon, Content, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
-var OracleCloudServiceModule = require('react-native').NativeModules.OracleCloudServiceModule;
+import RNOracleMobileCloud from 'react-native-oracle-mobile-cloud';
 
 class Login extends Component {
 
@@ -17,19 +17,36 @@ class Login extends Component {
 
     this.onTapLogin = this.onTapLogin.bind(this);
     this.onTapLogin2 = this.onTapLogin2.bind(this);
+    this.onTapLoginAnonymous = this.onTapLoginAnonymous.bind(this);
   }
 
-  onTapLogin(){
+  onTapLoginAnonymous() {
     this.setState({ loading: true });
 
-    OracleCloudServiceModule.loginUser(this.state.usuario, this.state.password,
+    RNOracleMobileCloud.loginAnonymous(
       (success, data) => {
         this.setState({ loading: false });
 
         if(success) {
           this.props.history.push('/home');
         } else {
-          Alert.alert("", data);
+          Alert.alert("Error", data);
+        }
+      });
+  }
+
+  onTapLogin(){
+    this.setState({ loading: true });
+
+    RNOracleMobileCloud.loginUser(this.state.usuario, this.state.password,
+      (success, data) => {
+        this.setState({ loading: false });
+
+        if(success) {
+          //Alert.alert("Success", JSON.stringify(data));
+          this.props.history.push('/home');
+        } else {
+          Alert.alert("Error", data);
         }
       });
   }
@@ -85,6 +102,10 @@ class Login extends Component {
             <View style={{ alignSelf: "center" }}>
                 <Button style={{marginTop: 10}} onPress={this.onTapLogin} >
                   <Text>Ingresar</Text>
+                </Button>
+
+                <Button style={{marginTop: 10}} onPress={this.onTapLoginAnonymous} >
+                  <Text>Ingresar Anonymous </Text>
                 </Button>
             </View>
 

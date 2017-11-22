@@ -1,0 +1,360 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/Users/dev2/Documents/Proyectos/oraclemc-mobile-app/app/screens/MovieDetails.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+var _nativeBase = require('native-base');
+
+var _reactNativeSnapCarousel = require('react-native-snap-carousel');
+
+var _reactNativeSnapCarousel2 = _interopRequireDefault(_reactNativeSnapCarousel);
+
+var _SliderEntry = require('../components/SliderEntry');
+
+var _SliderEntry2 = _interopRequireDefault(_SliderEntry);
+
+var _SliderEntry3 = require('../styles/SliderEntry.style');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  MovieDetails: {
+    displayName: 'MovieDetails'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/Users/dev2/Documents/Proyectos/oraclemc-mobile-app/app/screens/MovieDetails.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var MovieDetails = _wrapComponent('MovieDetails')(function (_Component) {
+  _inherits(MovieDetails, _Component);
+
+  function MovieDetails(props, context) {
+    _classCallCheck(this, MovieDetails);
+
+    var _this = _possibleConstructorReturn(this, (MovieDetails.__proto__ || Object.getPrototypeOf(MovieDetails)).call(this, props, context));
+
+    _this.onCloseDetails = _this.onCloseDetails.bind(_this);
+    return _this;
+  }
+
+  _createClass(MovieDetails, [{
+    key: 'onCloseDetails',
+    value: function onCloseDetails() {
+      this.props.history.goBack();
+    }
+  }, {
+    key: '_renderItem',
+    value: function _renderItem(_ref) {
+      var item = _ref.item,
+          index = _ref.index;
+
+      return _react3.default.createElement(_SliderEntry2.default, {
+        data: item,
+        even: (index + 1) % 2 === 0,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+
+      var movie = this.props.history.location.state.movie;
+
+      return _react3.default.createElement(
+        _nativeBase.Container,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 42
+          }
+        },
+        _react3.default.createElement(
+          _nativeBase.Header,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 43
+            }
+          },
+          _react3.default.createElement(
+            _nativeBase.Left,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 44
+              }
+            },
+            _react3.default.createElement(
+              _nativeBase.Button,
+              { transparent: true, onPress: this.onCloseDetails, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 45
+                }
+              },
+              _react3.default.createElement(_nativeBase.Icon, { name: 'arrow-back', __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 46
+                }
+              })
+            )
+          ),
+          _react3.default.createElement(
+            _nativeBase.Body,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 49
+              }
+            },
+            _react3.default.createElement(
+              _nativeBase.Title,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 50
+                }
+              },
+              'PeliApp'
+            )
+          ),
+          _react3.default.createElement(_nativeBase.Right, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 52
+            }
+          })
+        ),
+        _react3.default.createElement(
+          _nativeBase.Content,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 54
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.ScrollView,
+            { style: styles.backgroundScreenStyle, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 55
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.View,
+              { style: styles.imageAndTitleContainerStyle, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 56
+                }
+              },
+              _react3.default.createElement(_reactNativeSnapCarousel2.default, {
+                data: movie.images,
+                renderItem: this._renderItem,
+                sliderWidth: _SliderEntry3.sliderWidth,
+                itemWidth: _SliderEntry3.itemWidth,
+                enableMomentum: true,
+                activeSlideAlignment: 'start',
+                containerCustomStyle: styles.slider,
+                contentContainerCustomStyle: styles.sliderContentContainer,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 57
+                }
+              }),
+              _react3.default.createElement(
+                _reactNative.View,
+                { style: styles.containerRightSectionStyle, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 68
+                  }
+                },
+                _react3.default.createElement(
+                  _nativeBase.Text,
+                  { style: styles.titleStyle, __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 69
+                    }
+                  },
+                  movie.name
+                ),
+                _react3.default.createElement(
+                  _nativeBase.Text,
+                  { style: styles.blackTextStyle, __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 70
+                    }
+                  },
+                  movie.year,
+                  ' \xB7',
+                  movie.duration,
+                  ' mins \xB7',
+                  movie.clasification
+                ),
+                _react3.default.createElement(
+                  _reactNative.View,
+                  { style: { flexDirection: 'row' }, __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 75
+                    }
+                  },
+                  _react3.default.createElement(
+                    _nativeBase.Text,
+                    { style: [styles.blackTextStyle, { marginRight: 5 }], __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 76
+                      }
+                    },
+                    'Todos,'
+                  ),
+                  _react3.default.createElement(
+                    _nativeBase.Text,
+                    { style: styles.blackTextStyle, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 79
+                      }
+                    },
+                    movie.type
+                  )
+                )
+              )
+            ),
+            _react3.default.createElement(
+              _nativeBase.Text,
+              { style: styles.blackTextStyle, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 83
+                }
+              },
+              movie.description
+            ),
+            _react3.default.createElement(
+              _reactNative.View,
+              { style: styles.newLineTextStyle, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 84
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Text,
+                { style: styles.blackTextStyle, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 85
+                  }
+                },
+                'Protagonizada por:'
+              ),
+              _react3.default.createElement(
+                _nativeBase.Text,
+                { style: styles.blackTextStyle, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 88
+                  }
+                },
+                movie.staring
+              )
+            ),
+            _react3.default.createElement(
+              _reactNative.View,
+              { style: styles.newLineTextStyle, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 90
+                }
+              },
+              _react3.default.createElement(
+                _nativeBase.Text,
+                { style: styles.blackTextStyle, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 91
+                  }
+                },
+                'Dirigida por:'
+              ),
+              _react3.default.createElement(
+                _nativeBase.Text,
+                { style: styles.blackTextStyle, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 94
+                  }
+                },
+                movie.director
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return MovieDetails;
+}(_react2.Component));
+
+var styles = {
+  backgroundScreenStyle: {
+    flex: 1,
+    padding: 10
+  },
+  imageAndTitleContainerStyle: {
+    marginBottom: 10
+  },
+  closeIconContainerStyle: {
+    position: 'absolute',
+    right: 0,
+    paddingRight: 10,
+    paddingLeft: 15,
+    paddingBottom: 15
+  },
+  containerRightSectionStyle: {
+    flexDirection: 'column',
+    paddingLeft: 10
+  },
+  imageStyle: {
+    height: 200,
+    width: 115
+  },
+  titleStyle: {
+    fontSize: 20,
+    color: '#000'
+  },
+  blackTextStyle: {
+    color: '#000'
+  },
+  newLineTextStyle: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    flexDirection: 'row'
+  }
+};
+
+exports.default = MovieDetails;
