@@ -16,6 +16,10 @@ var _reactNative = require('react-native');
 
 var _nativeBase = require('native-base');
 
+var _reactNativeOracleMobileCloud = require('react-native-oracle-mobile-cloud');
+
+var _reactNativeOracleMobileCloud2 = _interopRequireDefault(_reactNativeOracleMobileCloud);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42,8 +46,6 @@ function _wrapComponent(id) {
     return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
   };
 }
-
-var OracleMobileCloud = _reactNative.NativeModules.OracleMobileCloud;
 
 var Login = _wrapComponent('Login')(function (_Component) {
   _inherits(Login, _Component);
@@ -72,7 +74,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
 
       this.setState({ loading: true });
 
-      OracleMobileCloud.loginAnonymous(function (success, data) {
+      _reactNativeOracleMobileCloud2.default.loginAnonymous(function (success, data) {
         _this2.setState({ loading: false });
 
         if (success) {
@@ -89,11 +91,10 @@ var Login = _wrapComponent('Login')(function (_Component) {
 
       this.setState({ loading: true });
 
-      OracleMobileCloud.loginUser(this.state.usuario, this.state.password, function (success, data) {
+      _reactNativeOracleMobileCloud2.default.loginUser(this.state.usuario, this.state.password, function (success, data) {
         _this3.setState({ loading: false });
 
         if (success) {
-          _reactNative.Alert.alert("Success", JSON.stringify(data));
           _this3.props.history.push('/home');
         } else {
           _reactNative.Alert.alert("Error", data);
@@ -131,7 +132,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 77
+            lineNumber: 76
           }
         },
         _react3.default.createElement(
@@ -139,7 +140,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 78
+              lineNumber: 77
             }
           },
           _react3.default.createElement(
@@ -147,7 +148,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 79
+                lineNumber: 78
               }
             },
             _react3.default.createElement(
@@ -155,7 +156,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 80
+                  lineNumber: 79
                 }
               },
               'PeliApp'
@@ -167,19 +168,19 @@ var Login = _wrapComponent('Login')(function (_Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 83
+              lineNumber: 82
             }
           },
           _react3.default.createElement(
             _reactNative.View,
             { style: { alignItems: "center" }, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 84
+                lineNumber: 83
               }
             },
             _react3.default.createElement(_nativeBase.Icon, { name: 'md-phone-portrait', style: { fontSize: 42, color: 'red' }, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 85
+                lineNumber: 84
               }
             }),
             _react3.default.createElement(
@@ -187,7 +188,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 86
+                  lineNumber: 85
                 }
               },
               'Welcome to Oracle Developer Tour 2017!'
@@ -198,7 +199,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 90
+                lineNumber: 89
               }
             },
             _react3.default.createElement(
@@ -206,7 +207,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 91
+                  lineNumber: 90
                 }
               },
               _react3.default.createElement(_nativeBase.Input, { placeholder: 'Usuario',
@@ -215,7 +216,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
                   return _this5.setState({ usuario: usuario });
                 }, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 92
+                  lineNumber: 91
                 }
               })
             ),
@@ -224,7 +225,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 96
+                  lineNumber: 95
                 }
               },
               _react3.default.createElement(_nativeBase.Input, { placeholder: 'Contrase\xF1a',
@@ -233,7 +234,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
                   return _this5.setState({ password: password });
                 }, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 97
+                  lineNumber: 96
                 }
               })
             )
@@ -242,14 +243,14 @@ var Login = _wrapComponent('Login')(function (_Component) {
             _reactNative.View,
             { style: { alignSelf: "center" }, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 103
+                lineNumber: 102
               }
             },
             _react3.default.createElement(
               _nativeBase.Button,
               { style: { marginTop: 10 }, onPress: this.onTapLogin, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 104
+                  lineNumber: 103
                 }
               },
               _react3.default.createElement(
@@ -257,7 +258,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
                 {
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 105
+                    lineNumber: 104
                   }
                 },
                 'Ingresar'
@@ -267,7 +268,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
               _nativeBase.Button,
               { style: { marginTop: 10 }, onPress: this.onTapLoginAnonymous, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 108
+                  lineNumber: 107
                 }
               },
               _react3.default.createElement(
@@ -275,7 +276,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
                 {
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 109
+                    lineNumber: 108
                   }
                 },
                 'Ingresar Anonymous '
@@ -284,7 +285,7 @@ var Login = _wrapComponent('Login')(function (_Component) {
           ),
           this.state.loading ? _react3.default.createElement(_nativeBase.Spinner, { color: 'red', __source: {
               fileName: _jsxFileName,
-              lineNumber: 113
+              lineNumber: 112
             }
           }) : null
         )

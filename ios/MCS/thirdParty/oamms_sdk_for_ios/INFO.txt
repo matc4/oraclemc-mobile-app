@@ -1,2 +1,0 @@
-Build Time: 160930150956
-Version Branch: master

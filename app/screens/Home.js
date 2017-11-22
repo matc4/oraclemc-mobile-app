@@ -7,7 +7,7 @@ import { Drawer, Header, Icon, Card, CardItem, Container, Left, Right, Title, Sp
 
 import SideBar from '../components/SideBar';
 import Movie from '../components/Movie';
-var OracleMobileCloud = NativeModules.OracleMobileCloud;
+import RNOracleMobileCloud from 'react-native-oracle-mobile-cloud';
 
 class Home extends Component {
 
@@ -33,7 +33,7 @@ class Home extends Component {
   }
 
   logOut() {
-    OracleMobileCloud.logout(
+    RNOracleMobileCloud.logout(
       (success, data) => {
         if(success) {
           Alert.alert("Success", data);
@@ -47,9 +47,9 @@ class Home extends Component {
   loadMovies() {
     this.setState({ loading: true });
 
-    OracleMobileCloud.invokeEndPoint("oracle_dev_api/movies",
+    RNOracleMobileCloud.invokeEndPoint("oracle_dev_api/movies",
       null, //Body
-      OracleMobileCloud.HTTP_METHOD_GET,
+      RNOracleMobileCloud.HTTP_METHOD_GET,
       (success, data) => {
         this.setState({ loading: false });
 

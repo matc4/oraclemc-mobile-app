@@ -3,7 +3,7 @@
 import React, {Component, PropTypes} from "react";
 import {  ToastAndroid, View, Alert, NativeModules } from 'react-native';
 import { Container, Icon, Content, Body, Title, Header, Button, Text, Form, Item, Input, Spinner } from 'native-base';
-var OracleMobileCloud = NativeModules.OracleMobileCloud;
+import RNOracleMobileCloud from 'react-native-oracle-mobile-cloud';
 
 class Login extends Component {
 
@@ -20,11 +20,10 @@ class Login extends Component {
     this.onTapLoginAnonymous = this.onTapLoginAnonymous.bind(this);
   }
 
-
   onTapLoginAnonymous() {
     this.setState({ loading: true });
 
-    OracleMobileCloud.loginAnonymous(
+    RNOracleMobileCloud.loginAnonymous(
       (success, data) => {
         this.setState({ loading: false });
 
@@ -39,7 +38,7 @@ class Login extends Component {
   onTapLogin(){
     this.setState({ loading: true });
 
-    OracleMobileCloud.loginUser(this.state.usuario, this.state.password,
+    RNOracleMobileCloud.loginUser(this.state.usuario, this.state.password,
       (success, data) => {
         this.setState({ loading: false });
 

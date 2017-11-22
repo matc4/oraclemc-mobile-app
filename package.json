@@ -14,7 +14,8 @@
     "react-native-drawer": "2.5.0",
     "react-native-modalbox": "1.4.2",
     "react-native-snap-carousel": "3.3.4",
-    "react-router-native": "4.2.0"
+    "react-router-native": "4.2.0",
+    "react-native-oracle-mobile-cloud": "https://github.com/vault-development/react-native-oracle-mobile-cloud.git"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",

@@ -24,6 +24,10 @@ var _Movie = require('../components/Movie');
 
 var _Movie2 = _interopRequireDefault(_Movie);
 
+var _reactNativeOracleMobileCloud = require('react-native-oracle-mobile-cloud');
+
+var _reactNativeOracleMobileCloud2 = _interopRequireDefault(_reactNativeOracleMobileCloud);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50,8 +54,6 @@ function _wrapComponent(id) {
     return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
   };
 }
-
-var OracleMobileCloud = _reactNative.NativeModules.OracleMobileCloud;
 
 var Home = _wrapComponent('Home')(function (_Component) {
   _inherits(Home, _Component);
@@ -86,7 +88,7 @@ var Home = _wrapComponent('Home')(function (_Component) {
     value: function logOut() {
       var _this2 = this;
 
-      OracleMobileCloud.logout(function (success, data) {
+      _reactNativeOracleMobileCloud2.default.logout(function (success, data) {
         if (success) {
           _reactNative.Alert.alert("Success", data);
           _this2.props.history.push('/');
@@ -102,12 +104,10 @@ var Home = _wrapComponent('Home')(function (_Component) {
 
       this.setState({ loading: true });
 
-      OracleMobileCloud.invokeEndPoint("oracle_dev_api/movies", null, OracleMobileCloud.HTTP_METHOD_GET, function (success, data) {
+      _reactNativeOracleMobileCloud2.default.invokeEndPoint("oracle_dev_api/movies", null, _reactNativeOracleMobileCloud2.default.HTTP_METHOD_GET, function (success, data) {
         _this3.setState({ loading: false });
 
         if (success) {
-          console.log(data);
-
           _this3.setState({ movies: data.moviesList });
         } else {
           _reactNative.Alert.alert("Error", data);
@@ -155,7 +155,7 @@ var Home = _wrapComponent('Home')(function (_Component) {
         return _react3.default.createElement(_nativeBase.Spinner, { color: 'red',
           style: { flex: 1, justifyContent: 'center', alignItems: 'center' }, __source: {
             fileName: _jsxFileName,
-            lineNumber: 98
+            lineNumber: 95
           }
         });
       } else {
@@ -164,7 +164,7 @@ var Home = _wrapComponent('Home')(function (_Component) {
         this.state.movies.forEach(function (movie) {
           moviesArray.push(_react3.default.createElement(_Movie2.default, { video: movie, onPressMovie: onPressMovieFunc, key: movie.id, __source: {
               fileName: _jsxFileName,
-              lineNumber: 104
+              lineNumber: 101
             }
           }));
         });
@@ -185,14 +185,14 @@ var Home = _wrapComponent('Home')(function (_Component) {
           content: _react3.default.createElement(_SideBar2.default, {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 115
+              lineNumber: 112
             }
           }),
           onClose: function onClose() {
             return _this5.closeDrawer();
           }, __source: {
             fileName: _jsxFileName,
-            lineNumber: 113
+            lineNumber: 110
           }
         },
         _react3.default.createElement(
@@ -200,7 +200,7 @@ var Home = _wrapComponent('Home')(function (_Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 117
+              lineNumber: 114
             }
           },
           _react3.default.createElement(
@@ -208,7 +208,7 @@ var Home = _wrapComponent('Home')(function (_Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 118
+                lineNumber: 115
               }
             },
             _react3.default.createElement(
@@ -216,19 +216,19 @@ var Home = _wrapComponent('Home')(function (_Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 119
+                  lineNumber: 116
                 }
               },
               _react3.default.createElement(
                 _nativeBase.Button,
                 { transparent: true, onPress: this.openDrawer, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 120
+                    lineNumber: 117
                   }
                 },
                 _react3.default.createElement(_nativeBase.Icon, { name: 'md-menu', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 121
+                    lineNumber: 118
                   }
                 })
               )
@@ -238,7 +238,7 @@ var Home = _wrapComponent('Home')(function (_Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 124
+                  lineNumber: 121
                 }
               },
               _react3.default.createElement(
@@ -246,7 +246,7 @@ var Home = _wrapComponent('Home')(function (_Component) {
                 {
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 125
+                    lineNumber: 122
                   }
                 },
                 'PeliApp'
@@ -257,19 +257,19 @@ var Home = _wrapComponent('Home')(function (_Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 127
+                  lineNumber: 124
                 }
               },
               _react3.default.createElement(
                 _nativeBase.Button,
                 { transparent: true, onPress: this.logOut, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 128
+                    lineNumber: 125
                   }
                 },
                 _react3.default.createElement(_nativeBase.Icon, { name: 'pulse', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 129
+                    lineNumber: 126
                   }
                 })
               ),
@@ -277,12 +277,12 @@ var Home = _wrapComponent('Home')(function (_Component) {
                 _nativeBase.Button,
                 { transparent: true, onPress: this.loadMovies, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 132
+                    lineNumber: 129
                   }
                 },
                 _react3.default.createElement(_nativeBase.Icon, { name: 'refresh', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 133
+                    lineNumber: 130
                   }
                 })
               )
@@ -293,14 +293,14 @@ var Home = _wrapComponent('Home')(function (_Component) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 137
+                lineNumber: 134
               }
             },
             _react3.default.createElement(
               _reactNative.View,
               { style: { flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 70 }, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 138
+                  lineNumber: 135
                 }
               },
               this.renderMovies()
